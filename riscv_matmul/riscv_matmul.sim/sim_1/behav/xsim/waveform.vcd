@@ -1,0 +1,263 @@
+$date
+   Mon Dec 22 14:27:18 2025
+$end
+
+$version
+  2023.2
+  $dumpfile ("waveform.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_riscv_top $end
+$scope module riscv_top_dut $end
+$var wire 1 ! clk $end
+$var wire 1 " rst $end
+$var wire 32 # pc_out_wire [31:0] $end
+$var wire 32 $ pc_next_wire [31:0] $end
+$var wire 32 % pc_wire [31:0] $end
+$var wire 32 & decode_wire [31:0] $end
+$var wire 32 ' read_data1 [31:0] $end
+$var wire 32 ( read_data2 [31:0] $end
+$var wire 32 ) regtomux [31:0] $end
+$var wire 32 * wb_wire [31:0] $end
+$var wire 32 + branch_target [31:0] $end
+$var wire 32 , immgen_wire [31:0] $end
+$var wire 32 - muxtoalu [31:0] $end
+$var wire 32 . read_data_wire [31:0] $end
+$var wire 32 / wb_data_wire [31:0] $end
+$var wire 1 0 regwrite $end
+$var wire 1 1 alu_src $end
+$var wire 1 2 memread $end
+$var wire 1 3 memwrite $end
+$var wire 1 4 memtoreg $end
+$var wire 1 5 branch $end
+$var wire 1 6 zero $end
+$var wire 2 7 aluop_wire [1:0] $end
+$var wire 4 8 alucontrol_wire [3:0] $end
+$var wire 1 9 alusrc $end
+$scope module program_counter_01 $end
+$var wire 1 ! clk $end
+$var wire 1 " rst $end
+$var wire 32 % pc_in [31:0] $end
+$var reg 32 : pc_out [31:0] $end
+$upscope $end
+$scope module pc_adder_01 $end
+$var wire 32 % pc_in [31:0] $end
+$var reg 32 ; pc_next [31:0] $end
+$upscope $end
+$scope module pc_mux_01 $end
+$var wire 32 $ pc_in [31:0] $end
+$var wire 32 + pc_branch [31:0] $end
+$var wire 1 < pc_select $end
+$var reg 32 = pc_out [31:0] $end
+$upscope $end
+$scope module instruction_memory_01 $end
+$var wire 1 " rst $end
+$var wire 1 ! clk $end
+$var wire 32 # read_address [31:0] $end
+$var wire 32 & instruction_out [31:0] $end
+$var integer 32 > k [31:0] $end
+$upscope $end
+$scope module register_file_01 $end
+$var wire 1 ! clk $end
+$var wire 1 " rst $end
+$var wire 1 0 regwrite $end
+$var wire 5 ? rs1 [4:0] $end
+$var wire 5 ? rs2 [4:0] $end
+$var wire 5 ? rd [4:0] $end
+$var wire 32 / write_data [31:0] $end
+$var wire 32 ' read_data1 [31:0] $end
+$var wire 32 ) read_data2 [31:0] $end
+$var integer 32 @ k [31:0] $end
+$upscope $end
+$scope module main_control_unit_01 $end
+$var wire 7 A opcode [6:0] $end
+$var reg 1 B regwrite $end
+$var reg 1 C memread $end
+$var reg 1 D memwrite $end
+$var reg 1 E memtoreg $end
+$var reg 1 F alusrc $end
+$var reg 1 G branch $end
+$var reg 2 H aluop [1:0] $end
+$upscope $end
+$scope module alu_control_01 $end
+$var wire 3 I funct3 [2:0] $end
+$var wire 7 A funct7 [6:0] $end
+$var wire 2 7 alu_op [1:0] $end
+$var reg 4 J alu_control_out [3:0] $end
+$upscope $end
+$scope module alu_01 $end
+$var wire 32 ' a [31:0] $end
+$var wire 32 - b [31:0] $end
+$var wire 4 8 alu_control_in [3:0] $end
+$var reg 32 K result [31:0] $end
+$var reg 1 L zero $end
+$upscope $end
+$scope module immediate_generator_01 $end
+$var wire 32 & instruction [31:0] $end
+$var reg 32 M imm_out [31:0] $end
+$upscope $end
+$scope module mux_2to_1_01 $end
+$var wire 32 ) input0 [31:0] $end
+$var wire 32 , input1 [31:0] $end
+$var wire 1 9 select $end
+$var wire 32 - out [31:0] $end
+$upscope $end
+$scope module mux_2to_1_02 $end
+$var wire 32 * input0 [31:0] $end
+$var wire 32 . input1 [31:0] $end
+$var wire 1 4 select $end
+$var wire 32 / out [31:0] $end
+$upscope $end
+$scope module branch_adder_01 $end
+$var wire 32 # pc [31:0] $end
+$var wire 32 , offset [31:0] $end
+$var reg 32 N branch_target [31:0] $end
+$upscope $end
+$scope module data_memory_01 $end
+$var wire 1 ! clk $end
+$var wire 1 " rst $end
+$var wire 1 2 memread $end
+$var wire 1 3 memwrite $end
+$var wire 32 * address [31:0] $end
+$var wire 32 ) write_data [31:0] $end
+$var wire 32 . read_data [31:0] $end
+$var integer 32 O k [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+1"
+b0 #
+bx $
+bx %
+b0 &
+b0 '
+bz (
+b0 )
+b0 *
+b0 +
+b0 ,
+b0 -
+b0 .
+b0 /
+00
+z1
+02
+03
+04
+05
+16
+b0 7
+b0 8
+09
+b0 :
+bx ;
+0<
+bx =
+b10000000 >
+b0 ?
+bx @
+b0 A
+0B
+0C
+0D
+0E
+0F
+0G
+b0 H
+b0 I
+b0 J
+b0 K
+1L
+b0 M
+b0 N
+b1000000 O
+$end
+
+#50000
+1!
+b10000000 >
+b100000 @
+b1000000 O
+
+#100000
+0!
+
+#150000
+1!
+b10000000 >
+b100000 @
+b1000000 O
+
+#200000
+0!
+0"
+
+#250000
+1!
+bx #
+bx &
+bx '
+bx )
+bx *
+bx +
+bx -
+bx /
+x6
+bx :
+bx ?
+bx A
+bx I
+bx K
+xL
+bx N
+
+#300000
+0!
+
+#350000
+1!
+
+#400000
+0!
+
+#450000
+1!
+
+#500000
+0!
+
+#550000
+1!
+
+#600000
+0!
+
+#650000
+1!
+
+#700000
+0!
+
+#750000
+1!
+
+#800000
+0!
+
+#850000
+1!
+
+#900000
+0!
+
+#950000
+1!

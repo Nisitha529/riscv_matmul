@@ -1,0 +1,8 @@
+#
+# An unexpected error has occurred (11)
+#
+Stack:
+/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7/lib//server/libjvm.so(+0xd8797f) [0x71623338797f]
+/tools/Xilinx/Vivado/2023.2/tps/lnx64/jre17.0.7_7/lib//server/libjvm.so(JVM_handle_linux_signal+0x24e) [0x71623338846e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x42520) [0x716275042520]
+[0x51c921f8]
