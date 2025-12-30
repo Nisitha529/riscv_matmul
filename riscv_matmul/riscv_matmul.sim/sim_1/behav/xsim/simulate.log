@@ -1,0 +1,127 @@
+Time resolution is 1 ps
+=================================
+Starting testbench for alu_control
+=================================
+
+=== R-Type Instructions (alu_op = 2'b10) ===
+Time: 0 | alu_op=10, funct7=0000000, funct3=000 -> alu_ctrl=0000
+PASS: ADD
+Time: 10000 | alu_op=10, funct7=0100000, funct3=000 -> alu_ctrl=0001
+PASS: SUB
+Time: 20000 | alu_op=10, funct7=0000000, funct3=111 -> alu_ctrl=0010
+PASS: AND
+Time: 30000 | alu_op=10, funct7=0000000, funct3=110 -> alu_ctrl=0011
+PASS: OR
+Time: 40000 | alu_op=10, funct7=0000000, funct3=100 -> alu_ctrl=0100
+PASS: XOR
+Time: 50000 | alu_op=10, funct7=0000000, funct3=001 -> alu_ctrl=0101
+PASS: SLL
+Time: 60000 | alu_op=10, funct7=0000000, funct3=101 -> alu_ctrl=0110
+PASS: SRL
+Time: 70000 | alu_op=10, funct7=0100000, funct3=101 -> alu_ctrl=0111
+PASS: SRA
+Time: 80000 | alu_op=10, funct7=0000000, funct3=010 -> alu_ctrl=1000
+PASS: SLT
+
+=== Additional R-Type Tests ===
+Time: 90000 | alu_op=10, funct7=0000000, funct3=011 -> alu_ctrl=0000
+PASS: R-type with funct3=011 (defaults to ADD)
+Time: 100000 | alu_op=10, funct7=1111111, funct3=000 -> alu_ctrl=0000
+PASS: R-type with funct7=1111111 (defaults to ADD)
+
+=== Load/Store Instructions (alu_op = 2'b00) ===
+Time: 110000 | alu_op=00, funct7=0000000, funct3=000 -> alu_ctrl=0000
+PASS: Load (LB/LH/LW/LBU/LHU) - funct3=000
+Time: 120000 | alu_op=00, funct7=0000000, funct3=001 -> alu_ctrl=0000
+PASS: Load (LH) - funct3=001
+Time: 130000 | alu_op=00, funct7=0000000, funct3=010 -> alu_ctrl=0000
+PASS: Load (LW) - funct3=010
+Time: 140000 | alu_op=00, funct7=0000000, funct3=011 -> alu_ctrl=0000
+PASS: Load (funct3=011 defaults to ADD)
+Time: 150000 | alu_op=00, funct7=0000000, funct3=100 -> alu_ctrl=0000
+PASS: Load (LBU) - funct3=100
+Time: 160000 | alu_op=00, funct7=0000000, funct3=101 -> alu_ctrl=0000
+PASS: Load (LHU) - funct3=101
+Time: 170000 | alu_op=00, funct7=1111111, funct3=010 -> alu_ctrl=0000
+PASS: Store (SW) with funct7=1111111 (still ADD)
+
+=== I-Type Immediate Instructions (should use alu_op=2'b10) ===
+Time: 180000 | alu_op=10, funct7=0000000, funct3=000 -> alu_ctrl=0000
+PASS: ADDI
+Time: 190000 | alu_op=10, funct7=0000000, funct3=111 -> alu_ctrl=0010
+PASS: ANDI
+Time: 200000 | alu_op=10, funct7=0000000, funct3=110 -> alu_ctrl=0011
+PASS: ORI
+Time: 210000 | alu_op=10, funct7=0000000, funct3=100 -> alu_ctrl=0100
+PASS: XORI
+Time: 220000 | alu_op=10, funct7=0000000, funct3=001 -> alu_ctrl=0101
+PASS: SLLI
+Time: 230000 | alu_op=10, funct7=0000000, funct3=101 -> alu_ctrl=0110
+PASS: SRLI
+Time: 240000 | alu_op=10, funct7=0100000, funct3=101 -> alu_ctrl=0111
+PASS: SRAI
+Time: 250000 | alu_op=10, funct7=0000000, funct3=010 -> alu_ctrl=1000
+PASS: SLTI
+
+=== Undefined/Default Cases ===
+Time: 260000 | alu_op=01, funct7=0000000, funct3=000 -> alu_ctrl=0000
+PASS: Undefined alu_op=01 (defaults to ADD)
+Time: 270000 | alu_op=11, funct7=0000000, funct3=000 -> alu_ctrl=0000
+PASS: Undefined alu_op=11 (defaults to ADD)
+Time: 280000 | alu_op=10, funct7=0010000, funct3=000 -> alu_ctrl=0000
+PASS: Undefined funct7=0010000 (defaults to ADD)
+Time: 290000 | alu_op=10, funct7=0000000, funct3=111 -> alu_ctrl=0010
+PASS: AND (re-test to ensure no interference)
+
+=== Edge Cases and Stress Testing ===
+Time: 300000 | alu_op=00, funct7=0000001, funct3=001 -> alu_ctrl=0000
+Time: 305000 | alu_op=11, funct7=0001101, funct3=101 -> alu_ctrl=0000
+Time: 310000 | alu_op=01, funct7=0010010, funct3=001 -> alu_ctrl=0000
+Time: 315000 | alu_op=01, funct7=1110110, funct3=101 -> alu_ctrl=0000
+Time: 320000 | alu_op=01, funct7=0001100, funct3=001 -> alu_ctrl=0000
+Time: 325000 | alu_op=10, funct7=1000101, funct3=010 -> alu_ctrl=0000
+Time: 330000 | alu_op=01, funct7=1110111, funct3=010 -> alu_ctrl=0000
+Time: 335000 | alu_op=11, funct7=1110010, funct3=110 -> alu_ctrl=0000
+Time: 340000 | alu_op=00, funct7=1000101, funct3=100 -> alu_ctrl=0000
+Time: 345000 | alu_op=01, funct7=0101101, funct3=101 -> alu_ctrl=0000
+
+=== Exhaustive funct3 Testing ===
+Time: 350000 | alu_op=00, funct7=0000000, funct3=000 -> alu_ctrl=0000
+alu_op=00, funct3=000 -> alu_ctrl=0000
+Time: 355000 | alu_op=00, funct7=0000000, funct3=001 -> alu_ctrl=0000
+alu_op=00, funct3=001 -> alu_ctrl=0000
+Time: 360000 | alu_op=00, funct7=0000000, funct3=010 -> alu_ctrl=0000
+alu_op=00, funct3=010 -> alu_ctrl=0000
+Time: 365000 | alu_op=00, funct7=0000000, funct3=011 -> alu_ctrl=0000
+alu_op=00, funct3=011 -> alu_ctrl=0000
+Time: 370000 | alu_op=00, funct7=0000000, funct3=100 -> alu_ctrl=0000
+alu_op=00, funct3=100 -> alu_ctrl=0000
+Time: 375000 | alu_op=00, funct7=0000000, funct3=101 -> alu_ctrl=0000
+alu_op=00, funct3=101 -> alu_ctrl=0000
+Time: 380000 | alu_op=00, funct7=0000000, funct3=110 -> alu_ctrl=0000
+alu_op=00, funct3=110 -> alu_ctrl=0000
+Time: 385000 | alu_op=00, funct7=0000000, funct3=111 -> alu_ctrl=0000
+alu_op=00, funct3=111 -> alu_ctrl=0000
+
+=================================
+Test Summary
+=================================
+Total tests run: 30
+Tests passed:    30
+Tests failed:    0
+
+✅ ALL TESTS PASSED!
+=================================
+
+ALU Control Code Mapping:
+  0000: ADD
+  0001: SUB
+  0010: AND
+  0011: OR
+  0100: XOR
+  0101: SLL
+  0110: SRL
+  0111: SRA
+  1000: SLT
+  Default: ADD (0000)
+$finish called at time : 400 ns : File "/media/nisitha/My_Passport/MOODLE/Vivado_projects/riscv_matmul/riscv_matmul/riscv_matmul.srcs/sim_1/new/tb_alu_control.sv" Line 197
