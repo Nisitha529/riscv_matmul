@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module top_riscv(
-  input           clk,
-  input           reset,
+  input           clk_i,
+  input           reset_i,
   
   output [31 : 0] write_data_test,
   output [31 : 0] data_adr_test,
@@ -46,104 +46,117 @@ module top_riscv(
   assign readdata_test   = readdata_i;
   
   pc_unit pc_unit_01 (
-    .clk         (clk),
-    .rst         (reset),
+    .clk          (clk),
+    .rst          (reset),
     
-    .stall       (stall_i),
-    .pc_next     (pcnext_i),
+    .stall        (stall_i),
+    .pc_next      (pcnext_i),
     
-    .pc          (pc_i)
+    .pc           (pc_i)
   );  
   
   instruction_mem instruction_mem_01 (
-    .a           (pc_i),
+    .a            (pc_i),
     
-    .rd          (instr_i)
+    .rd           (instr_i)
   );     
   
   reg_file reg_file_01 (
-    .clk         (clk),
-    .rst         (reset),
+    .clk          (clk),
+    .rst          (reset),
     
-    .a1          (instr_i [19 : 15]),
-    .a2          (instr_i [24 : 20]),
-    .a3          (instr_i [11 : 7]),
+    .a1           (instr_i [19 : 15]),
+    .a2           (instr_i [24 : 20]),
+    .a3           (instr_i [11 : 7]),
     
-    .we3         (regwrite_i),
-    .wd3         (result_i),
+    .we3          (regwrite_i),
+    .wd3          (result_i),
     
-    .rd1         (srca_i),
-    .rd2         (srcb_i)
+    .rd1          (srca_i),
+    .rd2          (srcb_i)
   );
   
   control_unit control_unit_01 (
-    .funct3      (instr_i [ 14 : 12]),
-    .funct7      (instr_i [30]),
-    .op          (instr_i [6 : 0]),
-    .zero        (zero_i),
+    .funct3       (instr_i [ 14 : 12]),
+    .funct7       (instr_i [30]),
+    .op           (instr_i [6 : 0]),
+    .zero         (zero_i),
     
-    .mem_write   (memwrite_i),
-    .result_src  (resultsrc_i),
-    .alu_src     (alusrc_i),
-    .imm_src     (immsrc_i),
-    .reg_write   (regwrite_i),
-    .alu_control (alucontrol_i),
-    .pcsrc       (pcsrc_i)
+    .mem_write    (memwrite_i),
+    .result_src   (resultsrc_i),
+    .alu_src      (alusrc_i),
+    .imm_src      (immsrc_i),
+    .reg_write    (regwrite_i),
+    .alu_control  (alucontrol_i),
+    .pcsrc        (pcsrc_i)
   );
   
   sign_extend sign_extend_01 (
-    .instr       (instr_i [31 : 7]),
-    .imm_src     (immsrc_i),
+    .instr        (instr_i [31 : 7]),
+    .imm_src      (immsrc_i),
     
-    .imm_ext     (immext_i)
+    .imm_ext      (immext_i)
   );
   
   mux_2x1 mux_2x1_01 (
-    .d0          (rd2_i),
-    .d1          (immext_i),
-    .s           (alusrc_i),
+    .d0           (rd2_i),
+    .d1           (immext_i),
+    .s            (alusrc_i),
     
-    .y           (srcb_i)
+    .y            (srcb_i)
   );
   
   mux_2x1 mux_2x1_02 (
-    .d0          (pcplus4_i),
-    .d1          (pctarget_i),
-    .s           (pcsrc_i),
+    .d0           (pcplus4_i),
+    .d1           (pctarget_i),
+    .s            (pcsrc_i),
     
-    .y           (pcnext_i)
+    .y            (pcnext_i)
   );
   
   adder adder_0 (
-    .a           (pc_i),
-    .b           (immext_i),
+    .a            (pc_i),
+    .b            (immext_i),
     
-    .c           (pctarget_i)
+    .c            (pctarget_i)
   );
   
   adder adder_1 (
-    .a           (pc_i),
-    .b           (32'd4),
+    .a            (pc_i),
+    .b            (32'd4),
     
-    .c           (pcplus4_i)
+    .c            (pcplus4_i)
   );
   
   alu_unit alu_unit_01 (
-    .src_a       (srca_i),
-    .src_b       (srcb_i),
-    .alu_control (alucontrol_i),
+    .src_a        (srca_i),
+    .src_b        (srcb_i),
+    .alu_control  (alucontrol_i),
     
-    .alu_result  (aluresult_i),
-    .zero        (zero)
+    .alu_result   (aluresult_i),
+    .zero         (zero_i)
   );
   
   mux_3x1 mux_3x1_01 (
-    .data_0      (aluresult_i),
-    .data_1      (readdata_i),
-    .data_2      (pcplus4_i),
-    .select      (resultsrc_i),
+    .data_0       (aluresult_i),
+    .data_1       (readdata_i),
+    .data_2       (pcplus4_i),
+    .select       (resultsrc_i),
     
-    .out         (result_i)
+    .out          (result_i)
+  );
+  
+  data_mem_sys data_mem_sys_01 (
+    .clk          (clk_i),
+    .rst          (reset_i),
+  
+    .memread      (read_data),
+    .memwrite     (memwrite_i),
+    .word_address (aluresult_i [9 : 0]),
+    .datain       (rd2_i),
+    
+    .stall        (stall_i),
+    .dataout      (readdata_i)
   );
   
   assign read_data = (instr_i [6 : 0] == 7'b0000011) ? 1'b1 : 1'b0;
