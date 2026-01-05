@@ -1,7 +1,7 @@
 Vivado Simulator v2023.2
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: /tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_alu_control_behav xil_defaultlib.tb_alu_control xil_defaultlib.glbl -log elaborate.log 
+Running: /tools/Xilinx/Vivado/2023.2/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_top_riscv_behav xil_defaultlib.tb_top_riscv xil_defaultlib.glbl -log elaborate.log 
 Using 8 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -9,7 +9,22 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.alu_control
-Compiling module xil_defaultlib.tb_alu_control
+Compiling module xil_defaultlib.pc_unit
+Compiling module xil_defaultlib.instruction_mem
+Compiling module xil_defaultlib.reg_file_default
+Compiling module xil_defaultlib.main_decoder
+Compiling module xil_defaultlib.alu_decoder
+Compiling module xil_defaultlib.control_unit
+Compiling module xil_defaultlib.sign_extend
+Compiling module xil_defaultlib.mux_2x1
+Compiling module xil_defaultlib.adder
+Compiling module xil_defaultlib.alu_unit
+Compiling module xil_defaultlib.mux_3x1
+Compiling module xil_defaultlib.cache_controller
+Compiling module xil_defaultlib.data_mem
+Compiling module xil_defaultlib.cache_mem
+Compiling module xil_defaultlib.data_mem_sys
+Compiling module xil_defaultlib.top_riscv
+Compiling module xil_defaultlib.tb_top_riscv
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_alu_control_behav
+Built simulation snapshot tb_top_riscv_behav

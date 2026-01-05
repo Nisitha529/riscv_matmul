@@ -1,0 +1,27 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../riscv_matmul.srcs/sources_1/new/adder.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/alu_decoder.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/alu_unit.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/cache_controller.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/cache_mem.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/control_unit.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/data_mem.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/data_mem_sys.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/instruction_mem.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/main_decoder.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/mux_2x1.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/mux_3x1.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/pc_unit.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/reg_file.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/sign_extend.v" \
+"../../../../riscv_matmul.srcs/sources_1/new/top_riscv.v" \
+
+sv xil_defaultlib  \
+"../../../../riscv_matmul.srcs/sim_1/new/tb_top_riscv.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

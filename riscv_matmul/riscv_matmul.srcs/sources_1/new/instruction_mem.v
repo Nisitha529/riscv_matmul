@@ -11,7 +11,7 @@ module instruction_mem(
   reg [31 : 0] mem [0 : 10000];
   
   initial begin
-    $readmemh ("test_riscv.txt", mem);
+    $readmemh ("/media/nisitha/My_Passport/MOODLE/Vivado_projects/riscv_matmul/riscv_matmul/riscv_matmul.srcs/sources_1/new/test_riscv.txt", mem);
   end
   
   always @ (*) begin

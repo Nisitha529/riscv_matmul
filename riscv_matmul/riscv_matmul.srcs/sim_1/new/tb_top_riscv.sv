@@ -28,7 +28,7 @@ module tb_top_riscv();
 
   initial begin
     reset <= 1; 
-    # (CLK_PERIOD * 3); 
+    # (60); 
     reset <= 0; 
   end
 

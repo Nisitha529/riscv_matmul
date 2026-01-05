@@ -46,8 +46,8 @@ module top_riscv(
   assign readdata_test   = readdata_i;
   
   pc_unit pc_unit_01 (
-    .clk          (clk),
-    .rst          (reset),
+    .clk          (clk_i),
+    .rst          (reset_i),
     
     .stall        (stall_i),
     .pc_next      (pcnext_i),
@@ -62,8 +62,8 @@ module top_riscv(
   );     
   
   reg_file reg_file_01 (
-    .clk          (clk),
-    .rst          (reset),
+    .clk          (clk_i),
+    .rst          (reset_i),
     
     .a1           (instr_i [19 : 15]),
     .a2           (instr_i [24 : 20]),
@@ -88,7 +88,7 @@ module top_riscv(
     .imm_src      (immsrc_i),
     .reg_write    (regwrite_i),
     .alu_control  (alucontrol_i),
-    .pcsrc        (pcsrc_i)
+    .pc_src       (pcsrc_i)
   );
   
   sign_extend sign_extend_01 (
@@ -152,7 +152,7 @@ module top_riscv(
   
     .memread      (read_data),
     .memwrite     (memwrite_i),
-    .word_address (aluresult_i [9 : 0]),
+    .wordaddress  (aluresult_i [9 : 0]),
     .datain       (rd2_i),
     
     .stall        (stall_i),

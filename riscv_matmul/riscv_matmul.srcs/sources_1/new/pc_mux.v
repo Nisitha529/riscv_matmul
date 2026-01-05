@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module pc_mux(
-  input      [31 : 0] pc_in,
+  input      [31 : 0] pc_seq,
   input      [31 : 0] pc_branch,
   input               pc_select,
   
@@ -10,7 +10,7 @@ module pc_mux(
 
   always @(*) begin
     if (pc_select == 1'b0 ) begin
-      pc_out = pc_in;
+      pc_out = pc_seq;
     end else begin
       pc_out = pc_branch;
     end

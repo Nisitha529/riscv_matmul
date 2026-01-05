@@ -28,7 +28,7 @@ module cache_mem #(
     rdata = cache [index_offset];
   end
   
-  always @ (posedge clk, negedge reset) begin
+  always @ (posedge clk, posedge reset) begin
     if (reset) begin
       for (i = 0; i < CACHE_DEPTH; i = i + 1) begin
         cache [i]          <= 32'd0;
