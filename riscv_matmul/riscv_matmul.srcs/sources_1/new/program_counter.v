@@ -3,10 +3,11 @@ module program_counter(
   input             rst, 
                  
   input      [31:0] pc_in,       
+  
   output reg [31:0] pc_out 
 );
 
-always @(posedge clk or posedge rst) begin
+always @(clk) begin
   if (rst) begin
     pc_out <= 32'b00;  
   end else begin

@@ -14,7 +14,7 @@ module program_memory(
   
   initial begin
     $display  ("Loading program.hex...");
-    $readmemh ("program.hex", mem_array);
+    $readmemh ("/media/nisitha/My_Passport/MOODLE/Vivado_projects/riscv_matmul/riscv_matmul/riscv_matmul.srcs/sources_1/new/program.hex", mem_array);
     $display  ("Program loaded successfully");
     // Display first few instructions for testing
     $display  ("Program Memory: index[0] = 0x%08h", mem_array[0]);

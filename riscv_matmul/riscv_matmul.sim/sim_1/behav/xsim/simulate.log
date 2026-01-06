@@ -1,1 +1,7 @@
 Time resolution is 1 ps
+Loading program.hex...
+Program loaded successfully
+Program Memory: index[0] = 0x00000000
+Program Memory: index[1] = 0x00500093
+Program Memory: index[2] = 0x00a00113
+Program Memory: index[3] = 0x0140a193

@@ -9,7 +9,7 @@ module alu(
   output reg          zero
 );
 
-  always @ (a or b or alu_control_in) begin
+  always @ (*) begin
     case (alu_control_in) 
       4'b0000 : result = a + b;
       4'b0001 : result = a - b; 
@@ -20,10 +20,12 @@ module alu(
       4'b0110 : result = a >> b [4 : 0];
       4'b0111 : result = $signed(a) >>> b [4 : 0];
       4'b1000 : result = ($signed(a) < $signed(b)) ? 32'b1 : 32'b0;
+      4'b1001 : result = (a < b) ? 32'b1 : 32'b0;
+      4'b1100 : result = b;
       default : result = 32'd0;
     endcase
   
-    zero = (result == 32'd0) ? 1'd1 : 1'd0;
+    zero = (result == 32'd0);
   
   end
 
