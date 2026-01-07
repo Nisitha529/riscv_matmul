@@ -7,7 +7,7 @@ module program_counter(
   output reg [31:0] pc_out 
 );
 
-always @(clk) begin
+always @ (posedge clk) begin
   if (rst) begin
     pc_out <= 32'b00;  
   end else begin
